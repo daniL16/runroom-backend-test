@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      context: ./
+      target: api_php
+    image: php:7.4-fpm-alpine
+    volumes:
+      - ./:/srv/api:rw,cached
