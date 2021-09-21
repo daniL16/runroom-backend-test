@@ -39,10 +39,7 @@ class GildedRose {
                 }
             }
 
-            if ($itemName != 'Sulfuras, Hand of Ragnaros') {
-                $item->setSellIn( $item->getSellIn() - 1);
-            }
-
+            $this->setSellIn($item);
             $this->updateQualityNegativeSellIn($item);
 
         }
@@ -74,5 +71,13 @@ class GildedRose {
         }
     }
 
+    /**
+     * @param Item $item
+     */
+    private function setSellIn(Item $item){
+        if ($item->getName() != 'Sulfuras, Hand of Ragnaros') {
+            $item->setSellIn( $item->getSellIn() - 1);
+        }
+    }
 
 }
