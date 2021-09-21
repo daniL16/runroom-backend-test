@@ -19,11 +19,11 @@ class GildedRoseTest extends TestCase
     {
         $items = [new EmptyItem('', 1, 5)];
 
-  		$gilded_rose = new GildedRose($items);
+        $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
         $this->assertEquals(4, $items[0]->getQuality());
-  	}
+    }
 
     /**
      * @test
@@ -32,11 +32,11 @@ class GildedRoseTest extends TestCase
     {
   		$items = [new EmptyItem('', -1, 5)];
 
-  		$gilded_rose = new GildedRose($items);
+        $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(3, $items[0]->getQuality());
-  	}
+        $this->assertEquals(3, $items[0]->getQuality());
+    }
 
     /**
      * @test
@@ -45,37 +45,37 @@ class GildedRoseTest extends TestCase
     {
   		$items = [new EmptyItem('', 0, 0)];
 
-  		$gilded_rose = new GildedRose($items);
+        $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(0, $items[0]->getQuality());
-  	}
+        $this->assertEquals(0, $items[0]->getQuality());
+    }
 
     /**
      * @test
      */
     public function agedBrieIncreasesQualityOverTime()
     {
-  		$items = [new AgedBrie(0, 5)];
+        $items = [new AgedBrie(0, 5)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(7, $items[0]->getQuality());
-  	}
+        $this->assertEquals(7, $items[0]->getQuality());
+    }
 
     /**
      * @test
      */
     public function qualityCannotBeGreaterThan50()
     {
-  		$items = [new AgedBrie(0, 50)];
+        $items = [new AgedBrie(0, 50)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(50, $items[0]->getQuality());
-  	}
+        $this->assertEquals(50, $items[0]->getQuality());
+    }
 
     /**
      * @test
@@ -87,23 +87,22 @@ class GildedRoseTest extends TestCase
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals(10, $items[0]->getSellIn());
-  		$this->assertEquals(10, $items[0]->getQuality());
-  	}
-
+        $this->assertEquals(10, $items[0]->getSellIn());
+        $this->assertEquals(10, $items[0]->getQuality());
+    }
 
     public static function backstageRules()
     {
-  		return [
-  			'incr. 1 if sellIn > 10' => [11, 10, 11],
-  			'incr. 2 if 5 < sellIn <= 10 (max)' => [10, 10, 12],
-  			'incr. 2 if 5 < sellIn <= 10 (min)' => [6, 10, 12],
-  			'incr. 3 if 0 < sellIn <= 5 (max)' => [5, 10, 13],
-  			'incr. 3 if 0 < sellIn <= 5 (min)' => [1, 10, 13],
-  			'puts to 0 if sellIn <= 0 (max)' => [0, 10, 0],
-  			'puts to 0 if sellIn <= 0 (...)' => [-1, 10, 0],
-  		];
-  	}
+        return [
+            'incr. 1 if sellIn > 10' => [11, 10, 11],
+            'incr. 2 if 5 < sellIn <= 10 (max)' => [10, 10, 12],
+            'incr. 2 if 5 < sellIn <= 10 (min)' => [6, 10, 12],
+            'incr. 3 if 0 < sellIn <= 5 (max)' => [5, 10, 13],
+            'incr. 3 if 0 < sellIn <= 5 (min)' => [1, 10, 13],
+            'puts to 0 if sellIn <= 0 (max)' => [0, 10, 0],
+            'puts to 0 if sellIn <= 0 (...)' => [-1, 10, 0],
+        ];
+    }
 
     /**
      * @dataProvider backstageRules
@@ -111,11 +110,11 @@ class GildedRoseTest extends TestCase
      */
     public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
     {
-  		$items = [new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality)];
+        $items = [new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
 
-  		$this->assertEquals($expected, $items[0]->getQuality());
-  	}
+        $this->assertEquals($expected, $items[0]->getQuality());
+    }
 }

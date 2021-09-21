@@ -8,11 +8,13 @@ final class GildedRose {
 
     private $items;
 
-    function __construct(array $items) {
+    public function __construct(array $items)
+    {
         $this->items = $items;
     }
 
-    public function update_quality() {
+    public function update_quality()
+    {
         foreach ($this->items as $item) {
             $itemName = $item->getName();
             $item->processQuality();
@@ -21,20 +23,15 @@ final class GildedRose {
         }
     }
 
-    /**
-     * @param Item $item
-     */
-    private function updateQualityNegativeSellIn(Item $item){
+    private function updateQualityNegativeSellIn(Item $item)
+    {
         $itemType = (new \ReflectionClass($item))->getShortName();
         if ($item->getSellIn() < 0) {
-            if(in_array($itemType,['AgedBrie','BackstagePasses'])){
+            if (in_array($itemType, ['AgedBrie', 'BackstagePasses'])) {
                 $item->updateQualityNegativeSellIn();
-            }
-            else{
-                    $item->processQuality();
+            } else {
+                $item->processQuality();
             }
         }
     }
-
-
 }
