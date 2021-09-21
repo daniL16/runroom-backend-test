@@ -1,12 +1,14 @@
-name: phpStan
+name: Php Stan
 
-on:
-  - push
+on: [push]
+
 jobs:
-  php-stan:
+  phpstan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run php-stan
-        uses: php-actions/phpstan@v2
-        
+      - uses: php-actions/composer@v5
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@v3
+        with:
+          path: src/
