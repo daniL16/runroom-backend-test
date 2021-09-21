@@ -25,16 +25,7 @@ class GildedRose {
                 if ($item->getQuality() < 50) {
                     $item->setQuality($item->getQuality() + 1);
                     if ($itemName == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->getSellIn() < 11) {
-                            if ($item->getQuality() < 50) {
-                                $item->setQuality($item->getQuality() + 1);
-                            }
-                        }
-                        if ($item->getSellIn() < 6) {
-                            if ($item->getQuality() < 50) {
-                                $item->setQuality($item->getQuality() + 1);
-                            }
-                        }
+                      $this->setTAFKAL80ETCQuality($item);
                     }
                 }
             }
@@ -80,4 +71,13 @@ class GildedRose {
         }
     }
 
+    /**
+     * @param Item $item
+     */
+    private function setTAFKAL80ETCQuality(Item $item){
+        if ($item->getSellIn() < 11 && $item->getQuality() < 50) {
+            $qualityImprovement = $item->getSellIn() < 6 ? 2 : 1;
+            $item->setQuality($item->getQuality() + $qualityImprovement);
+        }
+    }
 }
