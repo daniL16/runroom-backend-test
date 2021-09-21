@@ -1,0 +1,12 @@
+name: phpStan
+
+on:
+  - push
+jobs:
+  php-stan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run php-stan
+        uses: php-actions/phpstan@v2
+        
