@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Runroom\GildedRose;
 
-class BackstagePasses extends Item
+final class BackstagePasses extends Item
 {
 
     public function processQuality()

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Runroom\GildedRose;
 
-class Item {
+abstract class Item {
 
     protected $name;
     protected $sell_in;
@@ -50,4 +52,6 @@ class Item {
             $this->quality -= 1;
         }
     }
+
+    abstract function updateQualityNegativeSellIn();
 }

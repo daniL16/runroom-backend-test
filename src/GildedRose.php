@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Runroom\GildedRose;
 
-class GildedRose {
+final class GildedRose {
 
     private $items;
 

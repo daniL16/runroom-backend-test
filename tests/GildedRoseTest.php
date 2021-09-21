@@ -5,8 +5,10 @@ namespace Runroom\GildedRose\Tests;
 use PHPUnit\Framework\TestCase;
 use Runroom\GildedRose\AgedBrie;
 use Runroom\GildedRose\BackstagePasses;
+use Runroom\GildedRose\EmptyItem;
 use Runroom\GildedRose\GildedRose;
 use Runroom\GildedRose\Item;
+use Runroom\GildedRose\Sulfuras;
 
 class GildedRoseTest extends TestCase
 {
@@ -15,7 +17,7 @@ class GildedRoseTest extends TestCase
      */
     public function itemsDegradeQuality()
     {
-        $items = [new Item('', 1, 5)];
+        $items = [new EmptyItem('', 1, 5)];
 
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -28,7 +30,7 @@ class GildedRoseTest extends TestCase
      */
     public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass()
     {
-  		$items = [new Item('', -1, 5)];
+  		$items = [new EmptyItem('', -1, 5)];
 
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -41,7 +43,7 @@ class GildedRoseTest extends TestCase
      */
     public function itemsCannotHaveNegativeQuality()
     {
-  		$items = [new Item('', 0, 0)];
+  		$items = [new EmptyItem('', 0, 0)];
 
   		$gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();
@@ -80,7 +82,7 @@ class GildedRoseTest extends TestCase
      */
     public function sulfurasDoesNotChange()
     {
-  		$items = [new Item('Sulfuras, Hand of Ragnaros', 10, 10)];
+  		$items = [new Sulfuras('Sulfuras, Hand of Ragnaros', 10, 10)];
 
         $gilded_rose = new GildedRose($items);
         $gilded_rose->update_quality();

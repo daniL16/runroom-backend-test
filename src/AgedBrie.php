@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Runroom\GildedRose;
 
-class AgedBrie extends Item
+final class AgedBrie extends Item
 {
 
     public function __construct(int $sell_in, int $quality)
