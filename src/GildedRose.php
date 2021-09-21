@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Runroom\GildedRose;
 
-final class GildedRose {
-
+final class GildedRose
+{
     private $items;
 
     public function __construct(array $items)

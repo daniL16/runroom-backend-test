@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Runroom\GildedRose;
 
-abstract class Item {
-
+abstract class Item
+{
     protected $name;
     protected $sell_in;
     protected $quality;
@@ -36,7 +36,7 @@ abstract class Item {
     {
         return $this->quality;
     }
-    
+
     public function sold(): void
     {
         if ('Sulfuras, Hand of Ragnaros' != $this->name) {
@@ -54,5 +54,5 @@ abstract class Item {
         }
     }
 
-    abstract function updateQualityNegativeSellIn();
+    abstract public function updateQualityNegativeSellIn();
 }

@@ -7,14 +7,12 @@ namespace Runroom\GildedRose;
 /**
  * @TODO implementar los métodos propios de esta clase
  */
-
 final class EmptyItem extends Item
 {
-
     /**
      * @return void
      */
-    function updateQualityNegativeSellIn()
+    public function updateQualityNegativeSellIn()
     {
         // TODO: Implement updateQualityNegativeSellIn() method.
     }
