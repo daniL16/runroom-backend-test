@@ -6,8 +6,17 @@ namespace Runroom\GildedRose;
 
 abstract class Item
 {
+    /**
+     * @var string
+     */
     protected $name;
+    /**
+     * @var int
+     */
     protected $sell_in;
+    /**
+     * @var int
+     */
     protected $quality;
 
     public function __construct(string $name, int $sell_in, int $quality)
@@ -54,5 +63,5 @@ abstract class Item
         }
     }
 
-    abstract public function updateQualityNegativeSellIn();
+    abstract public function updateQualityNegativeSellIn(): void;
 }

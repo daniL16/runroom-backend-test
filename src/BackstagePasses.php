@@ -23,7 +23,7 @@ final class BackstagePasses extends Item
     /**
      * @return void
      */
-    public function updateQualityNegativeSellIn()
+    public function updateQualityNegativeSellIn():void
     {
         $this->quality = 0;
     }

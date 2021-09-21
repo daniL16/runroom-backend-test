@@ -6,8 +6,14 @@ namespace Runroom\GildedRose;
 
 final class GildedRose
 {
+    /**
+     * @var array<Item>
+     */
     private $items;
 
+    /**
+     * @param array<Item> $items
+     */
     public function __construct(array $items)
     {
         $this->items = $items;

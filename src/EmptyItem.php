@@ -12,7 +12,7 @@ final class EmptyItem extends Item
     /**
      * @return void
      */
-    public function updateQualityNegativeSellIn()
+    public function updateQualityNegativeSellIn():void
     {
         // TODO: Implement updateQualityNegativeSellIn() method.
     }
