@@ -21,10 +21,7 @@ final class AgedBrie extends Item
         }
     }
 
-    /**
-     * @return void
-     */
-    public function updateQualityNegativeSellIn():void
+    public function updateQualityNegativeSellIn(): void
     {
         if ($this->quality < 50) {
             ++$this->quality;

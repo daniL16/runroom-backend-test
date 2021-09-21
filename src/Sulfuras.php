@@ -9,10 +9,7 @@ namespace Runroom\GildedRose;
  */
 final class Sulfuras extends Item
 {
-    /**
-     * @return void
-     */
-    public function updateQualityNegativeSellIn():void
+    public function updateQualityNegativeSellIn(): void
     {
         // TODO: Implement updateQualityNegativeSellIn() method.
     }
