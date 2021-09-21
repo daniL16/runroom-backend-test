@@ -43,4 +43,11 @@ class Item {
             $this->sell_in -= 1;
         }
     }
+
+    public function processQuality()
+    {
+        if ($this->quality > 0 && $this->name != 'Sulfuras, Hand of Ragnaros') {
+            $this->quality -= 1;
+        }
+    }
 }

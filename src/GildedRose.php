@@ -13,22 +13,7 @@ class GildedRose {
     public function update_quality() {
         foreach ($this->items as $item) {
             $itemName = $item->getName();
-            $itemType = (new \ReflectionClass($item))->getShortName();
-            if ($itemName != 'Aged Brie' and $itemName != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->getQuality() > 0) {
-                    if ($itemName != 'Sulfuras, Hand of Ragnaros') {
-                        $item->setQuality($item->getQuality() - 1);
-                    }
-                }
-            }
-            else {
-                if ($item->getQuality() < 50) {
-                    $item->setQuality($item->getQuality() + 1);
-                    if ($itemType === 'BackstagePasses') {
-                        $this->setBackstageQuality($item);
-                    }
-                }
-            }
+            $item->processQuality();
             $item->sold();
             $this->updateQualityNegativeSellIn($item);
         }
@@ -38,33 +23,16 @@ class GildedRose {
      * @param Item $item
      */
     private function updateQualityNegativeSellIn(Item $item){
+        $itemType = (new \ReflectionClass($item))->getShortName();
         if ($item->getSellIn() < 0) {
-            $itemName = $item->getName();
-            if ($itemName != 'Aged Brie') {
-                if ($itemName != 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($item->getQuality() > 0) {
-                        if ($itemName != 'Sulfuras, Hand of Ragnaros') {
-                            $item->setQuality( $item->getQuality() - 1);
-                        }
-                    }
-                }
-                else {
-                    $item->setQuality( 0);
-                }
+            if(in_array($itemType,['AgedBrie','BackstagePasses'])){
+                $item->updateQualityNegativeSellIn();
             }
-            else {
-                if ($item->getQuality() < 50) {
-                    $item->setQuality($item->getQuality() + 1);
-                }
+            else{
+                    $item->processQuality();
             }
         }
     }
 
 
-    /**
-     * @param Item $item
-     */
-    private function setBackstageQuality(Item $item){
-        $item->processQuality();
-    }
 }
