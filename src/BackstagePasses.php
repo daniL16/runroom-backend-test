@@ -6,6 +6,9 @@ namespace Runroom\GildedRose;
 
 final class BackstagePasses extends Item
 {
+    /**
+     * @return void
+     */
     public function processQuality()
     {
         if ($this->quality < 50) {
@@ -17,6 +20,9 @@ final class BackstagePasses extends Item
         }
     }
 
+    /**
+     * @return void
+     */
     public function updateQualityNegativeSellIn()
     {
         $this->quality = 0;

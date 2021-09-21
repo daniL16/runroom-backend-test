@@ -11,6 +11,9 @@ final class AgedBrie extends Item
         parent::__construct('Aged Brie', $sell_in, $quality);
     }
 
+    /**
+     * @return void
+     */
     public function processQuality()
     {
         if ($this->quality < 50) {
@@ -18,6 +21,9 @@ final class AgedBrie extends Item
         }
     }
 
+    /**
+     * @return void
+     */
     public function updateQualityNegativeSellIn()
     {
         if ($this->quality < 50) {

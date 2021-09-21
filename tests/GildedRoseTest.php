@@ -14,8 +14,10 @@ class GildedRoseTest extends TestCase
 {
     /**
      * @test
+     *
+     * @return void
      */
-    public function itemsDegradeQuality()
+    public function itemsDegradeQuality(): void
     {
         $items = [new EmptyItem('', 1, 5)];
 
@@ -27,8 +29,10 @@ class GildedRoseTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass()
+    public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass(): void
     {
   		$items = [new EmptyItem('', -1, 5)];
 
@@ -40,8 +44,10 @@ class GildedRoseTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function itemsCannotHaveNegativeQuality()
+    public function itemsCannotHaveNegativeQuality(): void
     {
   		$items = [new EmptyItem('', 0, 0)];
 
@@ -53,8 +59,10 @@ class GildedRoseTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function agedBrieIncreasesQualityOverTime()
+    public function agedBrieIncreasesQualityOverTime(): void
     {
         $items = [new AgedBrie(0, 5)];
 
@@ -66,8 +74,10 @@ class GildedRoseTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function qualityCannotBeGreaterThan50()
+    public function qualityCannotBeGreaterThan50(): void
     {
         $items = [new AgedBrie(0, 50)];
 
@@ -79,8 +89,10 @@ class GildedRoseTest extends TestCase
 
     /**
      * @test
+     *
+     * @return void
      */
-    public function sulfurasDoesNotChange()
+    public function sulfurasDoesNotChange(): void
     {
   		$items = [new Sulfuras('Sulfuras, Hand of Ragnaros', 10, 10)];
 
@@ -91,7 +103,12 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(10, $items[0]->getQuality());
     }
 
-    public static function backstageRules()
+    /**
+     * @return int[][]
+     *
+     * @psalm-return array{'incr. 1 if sellIn > 10': array{0: int, 1: int, 2: int}, 'incr. 2 if 5 < sellIn <= 10 (max)': array{0: int, 1: int, 2: int}, 'incr. 2 if 5 < sellIn <= 10 (min)': array{0: int, 1: int, 2: int}, 'incr. 3 if 0 < sellIn <= 5 (max)': array{0: int, 1: int, 2: int}, 'incr. 3 if 0 < sellIn <= 5 (min)': array{0: int, 1: int, 2: int}, 'puts to 0 if sellIn <= 0 (max)': array{0: int, 1: int, 2: int}, 'puts to 0 if sellIn <= 0 (...)': array{0: int, 1: int, 2: int}}
+     */
+    public static function backstageRules(): array
     {
         return [
             'incr. 1 if sellIn > 10' => [11, 10, 11],
@@ -106,9 +123,12 @@ class GildedRoseTest extends TestCase
 
     /**
      * @dataProvider backstageRules
+     *
      * @test
+     *
+     * @return void
      */
-    public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
+    public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected): void
     {
         $items = [new BackstagePasses('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality)];
 

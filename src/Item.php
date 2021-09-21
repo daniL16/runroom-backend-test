@@ -36,17 +36,7 @@ abstract class Item {
     {
         return $this->quality;
     }
-
-    public function setQuality(int $quality): void
-    {
-        $this->quality = $quality;
-    }
-
-    public function setSellIn(int $sell_in): void
-    {
-        $this->sell_in = $sell_in;
-    }
-
+    
     public function sold(): void
     {
         if ('Sulfuras, Hand of Ragnaros' != $this->name) {
@@ -54,6 +44,9 @@ abstract class Item {
         }
     }
 
+    /**
+     * @return void
+     */
     public function processQuality()
     {
         if ($this->quality > 0 && 'Sulfuras, Hand of Ragnaros' != $this->name) {

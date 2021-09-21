@@ -13,7 +13,7 @@ final class GildedRose {
         $this->items = $items;
     }
 
-    public function update_quality()
+    public function update_quality(): void
     {
         foreach ($this->items as $item) {
             $itemName = $item->getName();
@@ -23,7 +23,7 @@ final class GildedRose {
         }
     }
 
-    private function updateQualityNegativeSellIn(Item $item)
+    private function updateQualityNegativeSellIn(Item $item): void
     {
         $itemType = (new \ReflectionClass($item))->getShortName();
         if ($item->getSellIn() < 0) {
