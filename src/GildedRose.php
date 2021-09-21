@@ -13,26 +13,24 @@ class GildedRose {
     public function update_quality() {
         foreach ($this->items as $item) {
             $itemName = $item->getName();
+            $itemType = (new \ReflectionClass($item))->getShortName();
             if ($itemName != 'Aged Brie' and $itemName != 'Backstage passes to a TAFKAL80ETC concert') {
                 if ($item->getQuality() > 0) {
                     if ($itemName != 'Sulfuras, Hand of Ragnaros') {
                         $item->setQuality($item->getQuality() - 1);
-
                     }
                 }
             }
             else {
                 if ($item->getQuality() < 50) {
                     $item->setQuality($item->getQuality() + 1);
-                    if ($itemName == 'Backstage passes to a TAFKAL80ETC concert') {
-                      $this->setTAFKAL80ETCQuality($item);
+                    if ($itemType === 'BackstagePasses') {
+                        $this->setBackstageQuality($item);
                     }
                 }
             }
-
-            $this->setSellIn($item);
+            $item->sold();
             $this->updateQualityNegativeSellIn($item);
-
         }
     }
 
@@ -62,22 +60,11 @@ class GildedRose {
         }
     }
 
-    /**
-     * @param Item $item
-     */
-    private function setSellIn(Item $item){
-        if ($item->getName() != 'Sulfuras, Hand of Ragnaros') {
-            $item->setSellIn( $item->getSellIn() - 1);
-        }
-    }
 
     /**
      * @param Item $item
      */
-    private function setTAFKAL80ETCQuality(Item $item){
-        if ($item->getSellIn() < 11 && $item->getQuality() < 50) {
-            $qualityImprovement = $item->getSellIn() < 6 ? 2 : 1;
-            $item->setQuality($item->getQuality() + $qualityImprovement);
-        }
+    private function setBackstageQuality(Item $item){
+        $item->processQuality();
     }
 }

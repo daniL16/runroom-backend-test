@@ -4,9 +4,9 @@ namespace Runroom\GildedRose;
 
 class Item {
 
-    private $name;
-    private $sell_in;
-    private $quality;
+    protected $name;
+    protected $sell_in;
+    protected $quality;
 
     function __construct(string $name, int $sell_in, int $quality) {
         $this->name = $name;
@@ -36,5 +36,11 @@ class Item {
 
     public function setSellIn(int $sell_in): void{
         $this->sell_in = $sell_in;
+    }
+
+    public function sold(): void{
+        if ($this->name != 'Sulfuras, Hand of Ragnaros') {
+            $this->sell_in -= 1;
+        }
     }
 }
